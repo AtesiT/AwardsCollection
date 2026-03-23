@@ -1,0 +1,19 @@
+import SwiftUI
+
+struct AwardsView: View {
+    var body: some View {
+        NavigationStack {
+            VStack {
+                ScrollView {
+                    GradientRectangles()
+                        .frame(width: 200, height: 200)
+                }
+            }
+            .navigationBarTitle("Awards")
+        }
+    }
+}
+
+#Preview {
+    AwardsView()
+}
