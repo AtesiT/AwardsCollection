@@ -10,7 +10,19 @@ struct CartRacingView: View {
                     start: start,
                     title: "Default",
                     color: .red,
-                    animation: .default
+                    animation: .default.speed(0.5)
+                )
+                CartView(
+                    start: start,
+                    title: "easeOut",
+                    color: .green,
+                    animation: .easeOut(duration: 0.7)
+                )
+                CartView(
+                    start: start,
+                    title: "easeIn",
+                    color: .yellow,
+                    animation: .easeIn(duration: 0.7)
                 )
             }
             Spacer()
