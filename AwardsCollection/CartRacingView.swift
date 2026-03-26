@@ -24,6 +24,33 @@ struct CartRacingView: View {
                     color: .yellow,
                     animation: .easeIn(duration: 0.7)
                 )
+                CartView(
+                    start: start,
+                    title: "easeInOut",
+                    color: .blue,
+                    animation: .easeInOut(duration: 0.7)
+                )
+                CartView(
+                    start: start,
+                    title: "Int-ing Spring",
+                    color: .brown,
+                    animation: .interpolatingSpring(
+                        mass: 1,
+                        stiffness: 100,
+                        damping: 10,
+                        initialVelocity: 0
+                    )
+                )
+                CartView(
+                    start: start,
+                    title: "Spring",
+                    color: .blue,
+                    animation: .spring(
+                        response: 0.55,
+                        dampingFraction: 0.45,
+                        blendDuration: 0
+                    )
+                )
             }
             Spacer()
         }
@@ -46,7 +73,7 @@ struct CartView: View {
                 .foregroundStyle(color)
                 .offset(x: start ? UIScreen.main.bounds.width - 80 : 0)
                 .animation(animation, value: start)
-            Text("Default")
+            Text(title)
         }
     }
 }
