@@ -28,7 +28,7 @@ struct CartRacingView: View {
                     start: start,
                     title: "easeInOut",
                     color: .blue,
-                    animation: .easeInOut(duration: 0.7)
+                    animation: .easeInOut(duration: 0.7).repeatCount(3, autoreverses: true)
                 )
                 CartView(
                     start: start,
@@ -44,12 +44,13 @@ struct CartRacingView: View {
                 CartView(
                     start: start,
                     title: "Spring",
-                    color: .blue,
+                    color: .purple,
                     animation: .spring(
                         response: 0.55,
                         dampingFraction: 0.45,
                         blendDuration: 0
                     )
+                    .delay(0.2)
                 )
             }
             Spacer()
