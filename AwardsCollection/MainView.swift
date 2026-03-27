@@ -40,7 +40,9 @@ struct MainView: View {
 extension AnyTransition {
     static var customTransition: AnyTransition {
         let insertion = AnyTransition.move(edge: .leading)
+            .combined(with: scale)
         let removal = AnyTransition.move(edge: .trailing)
+            .combined(with: scale)
         return .asymmetric(insertion: insertion, removal: removal)
         
     }
