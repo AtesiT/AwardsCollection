@@ -18,7 +18,7 @@ struct MainView: View {
             if awardIsShowing {
                 GradientRectangles()
                     .frame(width: 250, height: 250)
-                    .transition(.move(edge: .leading))
+                    .transition(.customTransition)
                 //                .offset(x: awardIsShowing ? 0 : -UIScreen.main.bounds.width)
                 //                .animation(.default, value: awardIsShowing)
             }
@@ -34,6 +34,15 @@ struct MainView: View {
         withAnimation {
             awardIsShowing.toggle()
         }
+    }
+}
+
+extension AnyTransition {
+    static var customTransition: AnyTransition {
+        let insertion = AnyTransition.move(edge: .leading)
+        let removal = AnyTransition.move(edge: .trailing)
+        return .asymmetric(insertion: insertion, removal: removal)
+        
     }
 }
 
