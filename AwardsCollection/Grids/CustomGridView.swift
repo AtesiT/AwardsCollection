@@ -12,18 +12,22 @@ struct CustomGridView<Content: View, T >: View {
     }
     
     var body: some View {
-        //  Нам необходимо передавать уникальные элементы и для этого используем диапазон
-        ScrollView {
-            //  Задаем количество строк
-            ForEach(0...rows, id: \.self) { rowIndex in
-                HStack {
-                    //  Задаем количество столбцов
-                    ForEach(0..<columns) { columnIndex in
-                        //  Инициализируем текст 
-                        if let index = getIndexFor(row: rowIndex, andColumn: columnIndex) {
-                            content(items[index])
-                        } else {
-                            Text("   ")
+        GeometryReader { geometry in
+            let sideLength = geometry.size.width / Double(columns)
+            
+            ScrollView {
+                //  Задаем количество строк
+                ForEach(0...rows, id: \.self) { rowIndex in
+                    HStack {
+                        //  Задаем количество столбцов
+                        ForEach(0..<columns) { columnIndex in
+                            //  Инициализируем текст 
+                            if let index = getIndexFor(row: rowIndex, andColumn: columnIndex) {
+                                content(items[index])
+                                    .frame(width: sideLength, height: sideLength)
+                            } else {
+                                Spacer()
+                            }
                         }
                     }
                 }
