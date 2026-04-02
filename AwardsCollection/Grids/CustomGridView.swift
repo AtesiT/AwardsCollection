@@ -1,8 +1,10 @@
 import SwiftUI
 
-struct CustomGridView: View {
-    let items: [Int]
+struct CustomGridView<Content: View, T >: View {
+    let items: [T]
     let columns: Int
+    
+    let content: (T) -> Content
     
     private var rows : Int {
         //  Получаем количество строк
@@ -19,7 +21,7 @@ struct CustomGridView: View {
                     ForEach(0..<columns) { columnIndex in
                         //  Инициализируем текст 
                         if let index = getIndexFor(row: rowIndex, andColumn: columnIndex) {
-                            Text(items[index].formatted())
+                            content(items[index])
                         } else {
                             Text("   ")
                         }
@@ -36,5 +38,7 @@ struct CustomGridView: View {
     }
 }
 #Preview {
-    CustomGridView(items: [0,1,2,3,4,5,6], columns: 3)
+    CustomGridView(items: [0,1,2,3,4,5,6], columns: 3) { item in
+        Text(item.formatted())
+    }
 }
